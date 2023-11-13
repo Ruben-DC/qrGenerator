@@ -3,11 +3,10 @@
 	import QRious from 'qrious';
 	import { ref, watch } from 'vue';
 
-	const qrCanvas = ref(null);
 	const props = defineProps({
 		qrValue: {
 			type: String,
-			default: '',
+			default: 'https://qr.rubendc.fr',
 		},
 		background: {
 			type: String,
@@ -17,22 +16,27 @@
 			type: String,
 			default: 'black',
 		},
+		opacity: {
+			type: Number,
+			default: 1,
+		},
 	});
 
+	const qrCanvas = ref(null);
 	const isQrGenerated = ref(false);
 
-	const generateQR = (value, foreground = 'black', background = 'white') => {
+	const generateQR = () => {
 		if (qrCanvas.value) {
 			new QRious({
 				element: qrCanvas.value,
-				value: value,
+				value: props.qrValue,
 				size: 800,
 
-				foreground: foreground,
+				foreground: props.foreground,
 				foregroundAlpha: 1,
 
-				background: background,
-				backgroundAlpha: 1,
+				background: props.background,
+				backgroundAlpha: props.opacity,
 			});
 
 			isQrGenerated.value = true;
@@ -40,9 +44,14 @@
 	};
 
 	watch(
-		() => props.qrValue,
-		(newValue) => {
-			generateQR(newValue);
+		[
+			() => props.qrValue,
+			() => props.foreground,
+			() => props.background,
+			() => props.opacity,
+		],
+		() => {
+			generateQR();
 		}
 	);
 
