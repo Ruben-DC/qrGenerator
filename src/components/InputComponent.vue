@@ -13,13 +13,13 @@
 
 <template>
 	<div class="input__wrapper">
-		<label for="qrInput" class="input__label">Générez un QR Code</label>
+		<label for="qrInput" class="input__label">Generate a QR Code</label>
 
 		<input
 			id="qrInput"
 			class="input__input"
 			type="text"
-			placeholder="Générez un QR Code"
+			placeholder="Generate a QR Code"
 			v-model="qrInput"
 			@keydown.enter="handleValidate"
 		/>
