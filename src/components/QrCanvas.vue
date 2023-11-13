@@ -91,13 +91,13 @@
 		}
 
 		&__download-button {
-			@include border-rounded(1px, 200px);
 			position: relative;
 
 			padding: 10px;
 			width: 50px;
 			height: 50px;
 
+			border: none;
 			background: none;
 			cursor: pointer;
 			transition: all 0.2s ease-in-out;
@@ -115,8 +115,6 @@
 			}
 
 			&:hover {
-				background: $black-2;
-
 				.icon {
 					top: 40%;
 				}
