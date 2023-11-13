@@ -26,7 +26,7 @@
 <template>
 	<div class="input__wrapper">
 		<div v-if="detailsIsOpen" class="input__details__wrapper">
-			<label for="backgroundColor">Couleur de fond :</label>
+			<label for="backgroundColor">Background color :</label>
 			<input
 				v-model="backgroundColor"
 				type="color"
@@ -35,7 +35,7 @@
 			/>
 
 			<div class="input__details__opacity__wrapper">
-				<label for="qrOpacity">Opacité du fond :</label>
+				<label for="qrOpacity">Background opacity :</label>
 				<input
 					v-model="opacity"
 					type="range"
@@ -55,7 +55,7 @@
 				/>
 			</div>
 
-			<label for="foregroundColor">Couleur du QR code :</label>
+			<label for="foregroundColor">Foreground color :</label>
 			<input
 				v-model="foregroundColor"
 				type="color"
@@ -74,14 +74,12 @@
 			id="qrInput"
 			class="input__text"
 			type="text"
-			placeholder="Générez un QR Code"
+			placeholder="Value to generate"
 			v-model="qrInput"
 			@keydown.enter="handleValidate"
 		/>
 
-		<button class="input__button" @click="handleValidate">
-			Value to generate
-		</button>
+		<button class="input__button" @click="handleValidate">Generate</button>
 	</div>
 </template>
 
@@ -92,11 +90,15 @@
 		&__wrapper {
 			display: flex;
 			flex-direction: row;
-			justify-content: center;
+			justify-content: space-between;
 			flex-wrap: wrap;
 			gap: 1rem;
 
 			width: 100%;
+
+			@media screen and (max-width: 768px) {
+				flex-direction: column;
+			}
 		}
 
 		&__label {
@@ -112,6 +114,10 @@
 			padding: 5px 20px;
 
 			background: none;
+
+			@media screen and (max-width: 768px) {
+				max-width: 100%;
+			}
 		}
 
 		&__button {
@@ -130,15 +136,17 @@
 
 		&__details {
 			&__wrapper {
+				@include border-rounded;
+
 				display: flex;
 				flex-direction: row;
-				justify-content: center;
+				justify-content: flex-start;
 				align-items: center;
 				flex-wrap: wrap;
 				gap: 1rem;
 
 				width: 100%;
-				@include border-rounded;
+				padding: 15px 30px;
 			}
 
 			&__background-color,
