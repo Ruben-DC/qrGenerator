@@ -4,6 +4,24 @@
 
 This is a simple Vue.js application that allows users to generate QR codes based on input values and download the generated QR code as an image.
 
+## Project Setup
+
+```sh
+pnpm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+pnpm dev
+```
+
+### Compile and Minify for Production
+
+```sh
+pnpm build
+```
+
 ## Features
 
 - **InputComponent.vue:** Takes user input for the QR code value.
